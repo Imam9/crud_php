@@ -30,13 +30,13 @@
  
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Data Mahasiswa <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.php">Data Mahasiswa <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Data Matakuliah</a>
+          <a class="nav-link" href="matakuliah/index.php">Data Matakuliah</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Data Nilai</a>
+          <a class="nav-link" href="data_nilai/index.php">Data Nilai</a>
         </li>
       </ul>
  
