@@ -6,7 +6,7 @@
 <div class="main-content">
   <section class="section">
     <div class="section-header">
-      <h3>Data Mahasiswa</h3>
+      <h3>Data Dosen</h3>
     </div>
     <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#tambahdata">
       Tambah Data
@@ -22,41 +22,39 @@
       <?php session_unset(); } ?>
       <div class="card table-responsive">
         <div class="card-body ">
-          <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped">
                 <thead class = "text-center">
                   <tr>
                     <th>No</th>
-                    <th>Nim</th>
+                    <th>Nip</th>
                     <th>Nama</th>
                     <th>Jenis Kelamin</th>
                     <th>Email</th>
                     <th>Alamat</th>
-                    <th>Prodi</th>
-                    <th>Jurusan</th>
+                    <th>Jabatan</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
 
                   <?php
-                  $query = "SELECT * FROM mahasiswa";
+                  $query = "SELECT * FROM dosen";
                   $result_tasks = mysqli_query($conn, $query);    
                   $no = 1;
                   while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                   <tr class = "text-center">
                     <td><?= $no++?></td>
-                    <td><?php echo $row['nim']; ?></td>
+                    <td><?php echo $row['nip']; ?></td>
                     <td><?php echo $row['nama']; ?></td>
                     <td><?php echo $row['jenis_kelamin']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['alamat']; ?></td>
-                    <td><?php echo $row['prodi']; ?></td>
-                    <td><?php echo $row['jurusan']; ?></td>
+                    <td><?php echo $row['jabatan']; ?></td>
                     <td class = "text-center">
-                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $row['id_mahasiswa']?>">
+                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#update<?php echo $row['id_dosen']?>">
                         <i class="fas fa-marker"></i>
                       </button>
-                      <a href="mahasiswa/delete.php?id=<?php echo $row['id_mahasiswa']?>" class="btn btn-danger btn-sm">
+                      <a href="dosen/delete.php?id=<?php echo $row['id_dosen']?>" class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i>
                       </a>
                     </td>
@@ -79,15 +77,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="mahasiswa/insert.php" method="POST">
+      <form action="dosen/insert.php" method="POST">
         <div class="modal-body">
         <div class="form-group">
-            <label for="">Nim</label>
-            <input type="text" name="nim" class="form-control" placeholder="Masukkan Nim * " autofocus required>
+            <label for="">Nip</label>
+            <input type="number" name="nip" class="form-control" placeholder="Masukkan Nim * " autofocus required>
           </div>
           <div class="form-group">
-            <label for="">Nama Mahasiswa</label>
-            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Mahasiswa *" autofocus required>
+            <label for="">Nama dosen</label>
+            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama dosen *" autofocus required>
           </div>
           <div class="form-group">
             <label for="">Jenis Kelamin</label>
@@ -106,17 +104,13 @@
             <input type="email" name="email" class="form-control" placeholder="Masukkan Email *" autofocus required>
           </div>
           <div class="form-group">
-            <label for="">Jurusan</label>
-            <input type="text" name="jurusan" class="form-control" placeholder="Masukkan Jurusan *" autofocus required>
-          </div>
-          <div class="form-group">
-            <label for="">Prodi</label>
-            <input type="text" name="prodi" class="form-control" placeholder="Masukkan Prodi*" autofocus required>
+            <label for="">Jabatan</label>
+            <input type="text" name="jabatan" class="form-control" placeholder="Masukkan jabatan *" autofocus required>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" name="insert_mhs" class="btn btn-success" value="Save">
+          <input type="submit" name="insert_dosen" class="btn btn-success" value="Save">
         </div>
       </form>
     </div>
@@ -124,30 +118,30 @@
 </div>
 
 <?php 
-$query = "SELECT * FROM mahasiswa";
+$query = "SELECT * FROM dosen";
 $result_tasks = mysqli_query($conn, $query);    
 
 while($cek = mysqli_fetch_assoc($result_tasks)) { ?>
-  <div class="modal fade" id="update<?php echo $cek['id_mahasiswa']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="update<?php echo $cek['id_dosen']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Update Data Mahasiswa</h4>
+        <h4 class="modal-title">Update Data dosen</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="mahasiswa/update.php" method="POST">
+        <form action="dosen/update.php" method="POST">
           <div class="form-group">
-            <label for="">Nim</label>
-            <input type="hidden" name = "id_mahasiswa" value = "<?= $cek['id_mahasiswa']?>">
-            <input type="text" name="nim" class="form-control" value = "<?= $cek['nim']?>" autofocus required>
+            <label for="">nip</label>
+            <input type="hidden" name = "id_dosen" value = "<?= $cek['id_dosen']?>">
+            <input type="number" name="nip" class="form-control" value = "<?= $cek['nip']?>" autofocus required>
           </div>
           <div class="form-group">
-            <label for="">Nama Mahasiswa</label>
+            <label for="">Nama dosen</label>
             <input type="text" name="nama" class="form-control"value = "<?= $cek['nama']?>" autofocus required>
           </div>
           <div class="form-group">
@@ -169,12 +163,8 @@ while($cek = mysqli_fetch_assoc($result_tasks)) { ?>
             <input type="email" name="email" class="form-control" value = "<?= $cek['email']?>" autofocus required>
           </div>
           <div class="form-group">
-            <label for="">Jurusan</label>
-            <input type="text" name="jurusan" class="form-control" value = "<?= $cek['jurusan']?>" autofocus required>
-          </div>
-          <div class="form-group">
-            <label for="">Prodi</label>
-            <input type="text" name="prodi" class="form-control" value = "<?= $cek['prodi']?>" autofocus required>
+            <label for="">Jabatan</label>
+            <input type="text" name="jabatan" class="form-control" value = "<?= $cek['jabatan']?>" autofocus required>
           </div>
 
         </div>
@@ -182,7 +172,7 @@ while($cek = mysqli_fetch_assoc($result_tasks)) { ?>
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <input type="submit" name="update_mhs" class="btn btn-success" value="Save">
+          <input type="submit" name="update_dosen" class="btn btn-success" value="Save">
         </div>
       </form>
 
